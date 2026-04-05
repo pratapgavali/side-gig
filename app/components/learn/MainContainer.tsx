@@ -19,8 +19,8 @@ interface SubjectPageProps {
   title: string;
   description: string;
   sections: Section[];
-  onBack?: () => void;
-  onTopicClick?: (slug: string) => void;
+  onBack?: any;
+  onTopicClick?: any;
 }
 
 export function SubjectPage({
@@ -55,6 +55,7 @@ export function SubjectPage({
             topics={section.topics}
             startIndex={startIndex}
             onTopicClick={onTopicClick}
+            
           />
         );
       })}

@@ -12,10 +12,10 @@ interface Topic {
 interface SyllabusSectionProps {
   title: string;
   topics: Topic[];
-  icon: any;
+  icon?: any;
   startIndex?: number;
-  subjectSlug: string;
-//   onTopicClick?: (slug: string) => void;
+  subjectSlug?: string;
+  onTopicClick?: any;
 }
 
 export function SyllabusSection({
@@ -24,7 +24,7 @@ export function SyllabusSection({
   icon,
   startIndex = 1,
   subjectSlug,
-//   onTopicClick,
+  onTopicClick,
 }: SyllabusSectionProps) {
   return (
     <div className="mb-8">

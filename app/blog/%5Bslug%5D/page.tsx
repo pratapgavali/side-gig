@@ -1,10 +1,10 @@
 import { Metadata } from "next";
-import { generateMetadata, getPageUrl } from "@/lib/seo";
+import { generateMetadata as generatePageMetaData, getPageUrl } from "../../../lib/seo";
 import {
   generateArticleSchema,
   generateBreadcrumbSchema,
   StructuredData,
-} from "@/lib/structured-data";
+} from "../../../lib/structured-data";
 
 /**
  * Example Blog Post Page with Full SEO Setup
@@ -45,7 +45,7 @@ export async function generateMetadata({
     };
   }
 
-  return generateMetadata({
+  return generatePageMetaData({
     title: post.title,
     description: post.excerpt,
     keywords: ["react", "tutorial", "web development", "javascript"],
