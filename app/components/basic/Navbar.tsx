@@ -3,19 +3,23 @@ import { Logo } from "./Logo";
 
 export function Navbar() {
   return (
-    <nav className="flex items-center justify-between px-8 py-0backdrop-blur bg-white/5 border-b border-white/10">
+    <nav
+      className="flex bg-[#f6f7fb] sticky top-0 z-10 items-center justify-between px-8 py-[9px] h-[65px]"
+      style={{
+        background: "#f6f7fb",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+        borderBottom: "none",
+      }}
+    >
       <Link href="/" className="hover:opacity-80 transition">
         <Logo />
       </Link>
-
-      <div className="space-x-8 text-sm">
-        <Link href="/learn" className="hover:text-blue-400">
+      <div className="space-x-8 text-sm text-gray-600">
+        <Link href="/learn" className="hover:text-blue-500 transition-colors">
           Learn
         </Link>
-        <Link href="/notes" className="hover:text-blue-400">
-          Notes
-        </Link>
-        <Link href="/blog" className="hover:text-blue-400">
+        <Link href="/blog" className="hover:text-blue-500 transition-colors">
           Blog
         </Link>
       </div>

@@ -176,7 +176,7 @@ return (
                 <Link
                   key={topic.slug}
                   href={`/learn/${subject}/${topic.slug}`}
-                  className="group flex items-center justify-between p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500 hover:bg-white/10 transition"
+                  className="group flex items-center justify-between p-2 rounded-2xl bg-white/5 hover:bg-white/10 transition"
                 >
                   <div>
                     <p className="text-xs text-gray-500 mb-1">

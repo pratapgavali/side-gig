@@ -1,7 +1,8 @@
-export function Section({ title, children }: { title: string; children: React.ReactNode }) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function Section({ title, children, ...props }: { title: string; children: React.ReactNode, [key: string]: any }) {
   return (
-    <section className="py-16">
-      <h3 className="text-3xl font-bold mb-10">{title}</h3>
+    <section className="py-4" {...props}>
+      <h4 className="text-2xl font-bold mb-4">{title}</h4>
       {children}
     </section>
   );

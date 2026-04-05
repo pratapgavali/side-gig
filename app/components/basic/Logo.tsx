@@ -5,11 +5,11 @@ export function Logo() {
     <div className="flex items-center gap-2">
       {/* Logo Image */}
       <Image
-        src="/logo-academy.png"
+        src="/logo_light_v1.png"
         alt="MyDigitalSpace Academy"
-        width={120}
-        height={120}
-        className="h-24 md:h-32 w-auto"
+        width={150}
+        height={80}
+        className="w-auto h-[65px]"
         priority
       />
     </div>
