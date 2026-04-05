@@ -1,5 +1,6 @@
 import { Card } from "@/components/basic/Card";
 import { Container } from "@/components/basic/Container";
+import CoursesSection from "@/components/Home/CoursesSection";
 
 export default function LearnPage() {
   const subjects = [
@@ -17,7 +18,8 @@ export default function LearnPage() {
 
   return (
     <Container>
-      <h1 className="text-4xl font-bold py-10">Choose a Subject</h1>
+      <CoursesSection />
+      {/* <h1 className="text-4xl font-bold py-10">Choose a Subject</h1>
 
       <div className="grid md:grid-cols-3 gap-6">
         {subjects.map((sub) => (
@@ -28,7 +30,7 @@ export default function LearnPage() {
             description={sub.description}
           />
         ))}
-      </div>
+      </div> */}
     </Container>
   );
 }

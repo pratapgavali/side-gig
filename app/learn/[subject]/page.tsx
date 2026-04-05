@@ -1,5 +1,10 @@
+/* eslint-disable react-hooks/immutability */
 import { Container } from "@/components/basic/Container";
 import Link from "next/link";
+import { Metadata } from "next";
+import { generateMetadata as generatePageMetadata, getPageUrl } from "../../../lib/seo";
+import { SubjectHeroBanner } from "@/components/learn/SubjectHeroBanner";
+import { SyllabusSection } from "@/components/learn/SyllabusSection";
 
 interface Props {
   params: Promise<{
@@ -20,14 +25,14 @@ const subjectDetails: Record<string, { title: string; content: string }> = {
   },
 };
 
-// ✅ NEW: syllabus structure
 const syllabusData: Record<
   string,
   {
     title: string;
     sections: {
       title: string;
-      topics: { title: string; slug: string }[];
+      icon: any;
+      topics: { title: string; slug: string, icon?: any, iconBgClassName?: string, thumbnail?: string }[];
     }[];
   }
 > = {
@@ -36,35 +41,38 @@ const syllabusData: Record<
     sections: [
       {
         title: "Basics",
+        icon: "🧱",
         topics: [
-          { title: "Variables", slug: "variables" },
-          { title: "Data Types", slug: "data-types" },
-          { title: "Operators", slug: "operators" },
+          { title: "Variables", slug: "variables", icon: "📦", iconBgClassName: "bg-yellow-100" },
+          { title: "Data Types", slug: "data-types", icon: "🔢", iconBgClassName: "bg-blue-100" },
+          { title: "Operators", slug: "operators", icon: "➕", iconBgClassName: "bg-green-100" },
         ],
       },
       {
         title: "Intermediate",
+         icon: "⚡",
         topics: [
-          { title: "Functions", slug: "functions" },
-          { title: "Closures", slug: "closures" },
-          { title: "Arrays", slug: "arrays" },
+          { title: "Functions", slug: "functions", icon: "⚙️", iconBgClassName: "bg-purple-100" },
+          { title: "Closures", slug: "closures", icon: "🔒", iconBgClassName: "bg-red-100" },
+          { title: "Arrays", slug: "arrays", icon: "🗂️", iconBgClassName: "bg-orange-100" },
         ],
       },
       {
         title: "Advanced",
+        icon: "🚀",
         topics: [
-          { title: "Promises", slug: "promises" },
-          { title: "Async/Await", slug: "async-await" },
+          { title: "Promises", slug: "promises", icon: "🤝", iconBgClassName: "bg-teal-100" },
+          { title: "Async/Await", slug: "async-await", icon: "⏳", iconBgClassName: "bg-indigo-100" },
         ],
       },
     ],
   },
-
   react: {
     title: "React",
     sections: [
       {
         title: "Basics",
+        icon: "🧱",
         topics: [
           { title: "Components", slug: "components" },
           { title: "Props", slug: "props" },
@@ -72,6 +80,7 @@ const syllabusData: Record<
       },
       {
         title: "Intermediate",
+        icon: "⚡",
         topics: [
           { title: "useState", slug: "use-state" },
           { title: "useEffect", slug: "use-effect" },
@@ -81,10 +90,28 @@ const syllabusData: Record<
   },
 };
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { subject } = await params;
+  const course = subjectDetails[subject as keyof typeof subjectDetails];
+
+  if (!course) {
+    return {
+      title: "Course Not Found",
+      description: "The course you're looking for doesn't exist.",
+    };
+  }
+
+  return generatePageMetadata({
+    title: course.title,
+    description: course.content,
+    keywords: [subject, "tutorial", "learn", "programming course"],
+    canonical: getPageUrl(`/learn/${subject}`),
+    ogType: "website",
+  });
+}
+
 export async function generateStaticParams() {
-  return Object.keys(subjectDetails).map((subject) => ({
-    subject,
-  }));
+  return Object.keys(subjectDetails).map((subject) => ({ subject }));
 }
 
 export default async function SubjectPage({ params }: Props) {
@@ -97,16 +124,11 @@ export default async function SubjectPage({ params }: Props) {
     return (
       <Container>
         <div className="py-10">
-          <h1 className="text-4xl font-bold text-red-400">
-            Subject Not Found
-          </h1>
+          <h1 className="text-4xl font-bold text-red-400">Subject Not Found</h1>
           <p className="text-gray-400 mt-4">
             The subject &quot;{subject}&quot; does not exist.
           </p>
-          <Link
-            href="/learn"
-            className="text-blue-400 hover:text-blue-300 mt-6 inline-block"
-          >
+          <Link href="/learn" className="text-blue-400 hover:text-blue-300 mt-6 inline-block">
             ← Back to Subjects
           </Link>
         </div>
@@ -114,91 +136,39 @@ export default async function SubjectPage({ params }: Props) {
     );
   }
 
-return (
-  <Container>
-    <div className="py-10">
+  const totalTopics = syllabus.sections.reduce((acc, s) => acc + s.topics.length, 0);
 
-      {/* Back */}
-      <Link
-        href="/learn"
-        className="text-blue-400 hover:text-blue-300 mb-6 inline-block"
-      >
-        ← Back to Subjects
-      </Link>
+  let runningIndex = 1;
 
-      {/* 🔥 Hero Section */}
-      <div className="relative rounded-3xl p-8 mb-12 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-white/10 backdrop-blur">
-        <div className="absolute inset-0 blur-3xl opacity-20 bg-gradient-to-r from-blue-500 to-purple-500" />
+  return (
+    <Container>
+      <div className="py-10">
+        <SubjectHeroBanner
+          title={subjectInfo.title}
+          description={subjectInfo.content}
+          sectionsCount={syllabus.sections.length}
+          topicsCount={totalTopics}
+          onBack="/learn"
+        />
 
-        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 relative z-10">
-          {subjectInfo.title}
-        </h1>
+        <div className="space-y-10">
+          {syllabus.sections.map((section) => {
+            const startIndex = runningIndex;
+            runningIndex += section.topics.length;
 
-        <p className="text-gray-300 text-lg max-w-2xl relative z-10">
-          {subjectInfo.content}
-        </p>
-
-        {/* Fake stats (adds premium feel) */}
-        <div className="flex gap-6 mt-6 text-sm text-gray-400 relative z-10">
-          <span>📘 {syllabus.sections.length} Sections</span>
-          <span>
-            📚{" "}
-            {syllabus.sections.reduce(
-              (acc, sec) => acc + sec.topics.length,
-              0
-            )}{" "}
-            Topics
-          </span>
+            return (
+              <SyllabusSection
+                key={section.title}
+                title={section.title}
+                topics={section.topics}
+                icon={section.icon}
+                startIndex={startIndex}
+                subjectSlug={subject}
+              />
+            );
+          })}
         </div>
       </div>
-
-      {/* 🔥 Syllabus Sections */}
-      <div className="space-y-12">
-        {syllabus.sections.map((section) => (
-          <div
-            key={section.title}
-            className="p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur"
-          >
-            {/* Section Header */}
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold">
-                {section.title}
-              </h2>
-
-              <span className="text-sm text-gray-400">
-                {section.topics.length} topics
-              </span>
-            </div>
-
-            {/* Topics Grid */}
-            <div className="grid md:grid-cols-2 gap-5">
-              {section.topics.map((topic, index) => (
-                <Link
-                  key={topic.slug}
-                  href={`/learn/${subject}/${topic.slug}`}
-                  className="group flex items-center justify-between p-2 rounded-2xl bg-white/5 hover:bg-white/10 transition"
-                >
-                  <div>
-                    <p className="text-xs text-gray-500 mb-1">
-                      Topic {index + 1}
-                    </p>
-
-                    <h3 className="text-lg font-medium group-hover:text-blue-400 transition">
-                      {topic.title}
-                    </h3>
-                  </div>
-
-                  <span className="text-gray-500 group-hover:text-blue-400 transition">
-                    →
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-    </div>
-  </Container>
-);
+    </Container>
+  );
 }

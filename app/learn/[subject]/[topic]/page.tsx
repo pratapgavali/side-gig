@@ -56,21 +56,24 @@ export default async function TopicPage({ params }: Props) {
               ← Back to {subject}
             </Link>
 
-            <h1 className="text-4xl font-bold capitalize">
+            <h1 className="text-4xl font-bold text-gray-900 capitalize mt-1">
               {topicData.title}
             </h1>
           </div>
 
           {/* Sections */}
           {topicData.sections.map((section) => (
-            <section key={section.id} id={section.id}>
-              <h2 className="text-2xl font-semibold mb-3">
-                {section.title}
-              </h2>
+            <section key={section.id} id={section.id} className="scroll-mt-24" >
 
-              <p className="text-gray-300 leading-relaxed">
-                {section.content}
-              </p>
+                <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-100">
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {section.title}
+                  </h2>
+                </div>
+
+                <div className="text-gray-700 leading-relaxed [&_pre]:!m-0 [&_code]:text-blue-500 [&_code]:font-mono [&_code]:text-sm [&_strong]:text-gray-900 [&_ul]:space-y-1 [&_li]:flex [&_li]:items-start [&_li]:gap-2 [&_li]:before:content-['✓'] [&_li]:before:text-blue-400 [&_li]:before:font-bold [&_li]:before:flex-shrink-0 [&_li]:before:mt-0.5 [&_li]:list-none">
+                  {section.content}
+                </div>
             </section>
           ))}
 

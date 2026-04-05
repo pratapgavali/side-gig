@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Metadata } from "next";
 import { GradientButton, PrimaryButton } from "./components/basic/Button";
 import { Card } from "./components/basic/Card";
 import { Container } from "./components/basic/Container";
@@ -6,7 +7,14 @@ import { Section } from "./components/basic/Section";
 import HeroBanner from "./components/Home/HeroBanner";
 import CoursesSection from "./components/Home/CoursesSection";
 import BlogSection from "./components/Home/BlogSection";
+import { generateMetadata } from "../lib/seo";
 
+export const metadata: Metadata = generateMetadata({
+  title: "Home",
+  description: "Learn programming and web development with our comprehensive courses. Master JavaScript, React, Node.js, and more.",
+  keywords: ["programming courses", "learn coding", "web development", "javascript tutorial", "react course"],
+  ogType: "website",
+});
 
 export default function Home() {
   const subjects = [

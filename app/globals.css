@@ -3,6 +3,38 @@
 :root {
   --background: #f6f7fb;
   --foreground: #171717;
+
+    /* Light Theme (default) */
+  --text-primary: #374151;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --text-strong: #111827;
+  
+  --code-bg: #f9fafb;
+  --code-text: #047857;
+  --code-border: #e5e7eb;
+  
+  --list-text: #374151;
+  
+  --info-blue-bg: #eff6ff;
+  --info-blue-border: #bfdbfe;
+  --info-blue-text: #1e40af;
+  
+  --info-yellow-bg: #fefce8;
+  --info-yellow-border: #fef08a;
+  --info-yellow-text: #854d0e;
+  
+  --info-green-bg: #f0fdf4;
+  --info-green-border: #bbf7d0;
+  --info-green-text: #166534;
+  
+  --info-red-bg: #fef2f2;
+  --info-red-border: #fecaca;
+  --info-red-text: #991b1b;
+  
+  --info-purple-bg: #faf5ff;
+  --info-purple-border: #e9d5ff;
+  --info-purple-text: #6b21a8;
 }
 
 @theme inline {
@@ -20,7 +52,50 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--background) url('/website_bg.png') no-repeat center/cover fixed;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Mobile background image */
+@media (max-width: 768px) {
+  body {
+    background: var(--background) url('/website_bg_mweb.png') no-repeat center/cover fixed;
+    background: #fff;
+  }
+}
+
+
+[data-theme="dark"] {
+  /* Dark Theme */
+  --text-primary: #d1d5db;
+  --text-secondary: #9ca3af;
+  --text-tertiary: #6b7280;
+  --text-strong: #ffffff;
+  
+  --code-bg: #1f2937;
+  --code-text: #4ade80;
+  --code-border: #374151;
+  
+  --list-text: #d1d5db;
+  
+  --info-blue-bg: #1e3a8a20;
+  --info-blue-border: #3b82f620;
+  --info-blue-text: #60a5fa;
+  
+  --info-yellow-bg: #854d0e20;
+  --info-yellow-border: #ca8a0420;
+  --info-yellow-text: #fde047;
+  
+  --info-green-bg: #16653420;
+  --info-green-border: #22c55e20;
+  --info-green-text: #4ade80;
+  
+  --info-red-bg: #991b1b20;
+  --info-red-border: #ef444420;
+  --info-red-text: #fca5a5;
+  
+  --info-purple-bg: #6b21a820;
+  --info-purple-border: #a855f720;
+  --info-purple-text: #d8b4fe;
 }

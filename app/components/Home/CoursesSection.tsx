@@ -17,12 +17,6 @@ function CoursesSection() {
 
     const router = useRouter();
 
-    function handleRedirection (link: string) {
-        return function () {
-            return router.push('');
-        }
-    }
-
   return (
          <Container>
            <Section id="available-subjects" title="">
