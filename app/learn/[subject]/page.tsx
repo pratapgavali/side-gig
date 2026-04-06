@@ -5,90 +5,13 @@ import { Metadata } from "next";
 import { generateMetadata as generatePageMetadata, getPageUrl } from "../../../lib/seo";
 import { SubjectHeroBanner } from "@/components/learn/SubjectHeroBanner";
 import { SyllabusSection } from "@/components/learn/SyllabusSection";
+import { subjectDetails, syllabusData } from "@/components/learn/contants/syllabus-constants";
 
 interface Props {
   params: Promise<{
     subject: string;
   }>;
 }
-
-const subjectDetails: Record<string, { title: string; content: string }> = {
-  javascript: {
-    title: "JavaScript",
-    content:
-      "Learn JavaScript from basics to advanced concepts including ES6+, async programming, and more.",
-  },
-  react: {
-    title: "React",
-    content:
-      "Master React for building modern, scalable frontend applications with hooks, state management, and best practices.",
-  },
-};
-
-const syllabusData: Record<
-  string,
-  {
-    title: string;
-    sections: {
-      title: string;
-      icon: any;
-      topics: { title: string; slug: string, icon?: any, iconBgClassName?: string, thumbnail?: string }[];
-    }[];
-  }
-> = {
-  javascript: {
-    title: "JavaScript",
-    sections: [
-      {
-        title: "Basics",
-        icon: "🧱",
-        topics: [
-          { title: "Variables", slug: "variables", icon: "📦", iconBgClassName: "bg-yellow-100" },
-          { title: "Data Types", slug: "data-types", icon: "🔢", iconBgClassName: "bg-blue-100" },
-          { title: "Operators", slug: "operators", icon: "➕", iconBgClassName: "bg-green-100" },
-        ],
-      },
-      {
-        title: "Intermediate",
-         icon: "⚡",
-        topics: [
-          { title: "Functions", slug: "functions", icon: "⚙️", iconBgClassName: "bg-purple-100" },
-          { title: "Closures", slug: "closures", icon: "🔒", iconBgClassName: "bg-red-100" },
-          { title: "Arrays", slug: "arrays", icon: "🗂️", iconBgClassName: "bg-orange-100" },
-        ],
-      },
-      {
-        title: "Advanced",
-        icon: "🚀",
-        topics: [
-          { title: "Promises", slug: "promises", icon: "🤝", iconBgClassName: "bg-teal-100" },
-          { title: "Async/Await", slug: "async-await", icon: "⏳", iconBgClassName: "bg-indigo-100" },
-        ],
-      },
-    ],
-  },
-  react: {
-    title: "React",
-    sections: [
-      {
-        title: "Basics",
-        icon: "🧱",
-        topics: [
-          { title: "Components", slug: "components" },
-          { title: "Props", slug: "props" },
-        ],
-      },
-      {
-        title: "Intermediate",
-        icon: "⚡",
-        topics: [
-          { title: "useState", slug: "use-state" },
-          { title: "useEffect", slug: "use-effect" },
-        ],
-      },
-    ],
-  },
-};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { subject } = await params;

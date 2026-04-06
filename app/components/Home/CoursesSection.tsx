@@ -8,8 +8,11 @@ import { useRouter } from 'next/navigation';
 const courses = [
     { name: "Javascript", slug: 'javascript', label: "Progress course", progress: 60, icon: "🐍", bgClassName: "bg-blue-950" },
     { name: "React", slug: 'react', label: "Progress course", progress: 35, icon: "💻", bgClassName: "bg-blue-900" },
+    { name: "Typescript", slug: 'typescript', label: "Progress course", progress: 60, icon: "🐍", bgClassName: "bg-blue-950" },
     { name: "Next", slug: 'next', label: "Progress course", progress: 60, icon: "🐍", bgClassName: "bg-blue-950" },
     { name: "Node", slug: 'node', label: "Progress course", progress: 60, icon: "🐍", bgClassName: "bg-blue-950" },
+    { name: "Express.js", slug: 'express', label: "Progress course", progress: 60, icon: "🐍", bgClassName: "bg-blue-950" },
+    { name: "MongoDB", slug: 'mongodb', label: "Progress course", progress: 60, icon: "🐍", bgClassName: "bg-blue-950" },
     { name: "Python", slug: 'python', label: "Progress course", progress: 60, icon: "🐍", bgClassName: "bg-blue-950" },
 ];
 
