@@ -224,7 +224,7 @@ if (count) {  // false, won't run even though count is a valid number
 // Better: if (count !== undefined && count !== null)`}
           </CodeBlock>
           <InfoBox variant="green" icon="💡">
-            Remember: empty arrays <InlineCode>[]</InlineCode> and empty objects <InlineCode>{}</InlineCode> are <Strong>truthy</Strong>. This surprises many beginners.
+            Remember: empty arrays <InlineCode>[]</InlineCode> and empty objects <InlineCode>{'{}'}</InlineCode> are <Strong>truthy</Strong>. This surprises many beginners.
           </InfoBox>
         </Space>
       ),

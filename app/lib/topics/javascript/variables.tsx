@@ -99,7 +99,7 @@ function example() {
 console.log(functionScoped);     // ❌ ReferenceError (function scope)`}
           </CodeBlock>
           <InfoBox variant="purple" icon="🎯">
-            Block scope includes <InlineCode>{}</InlineCode> in <InlineCode>if</InlineCode>, <InlineCode>for</InlineCode>, <InlineCode>while</InlineCode>, and standalone blocks. <InlineCode>let</InlineCode> and <InlineCode>const</InlineCode> respect block scope; <InlineCode>var</InlineCode> does not.
+            Block scope includes <InlineCode>{'{}'}</InlineCode> in <InlineCode>if</InlineCode>, <InlineCode>for</InlineCode>, <InlineCode>while</InlineCode>, and standalone blocks. <InlineCode>let</InlineCode> and <InlineCode>const</InlineCode> respect block scope; <InlineCode>var</InlineCode> does not.
           </InfoBox>
         </Space>
       ),

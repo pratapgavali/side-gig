@@ -441,7 +441,7 @@ console.log(counterModule.getCount());  // 1
 }`}
           </CodeBlock>
           <InfoBox variant="purple" icon="📦">
-            IIFEs were essential before ES6 modules and block scoping. Today, you can often use block scope <InlineCode>{}</InlineCode> with <InlineCode>let/const</InlineCode> instead.
+            IIFEs were essential before ES6 modules and block scoping. Today, you can often use block scope <InlineCode>{'{}'}</InlineCode> with <InlineCode>let/const</InlineCode> instead.
           </InfoBox>
         </Space>
       ),
